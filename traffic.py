@@ -59,17 +59,23 @@ def load_data(data_dir):
     corresponding `images`.
     """
 
-    # TODO: Open directory
+    images = []
+    labels = []
 
-    for dirpath, dirnames, files in os.walk('.', topdown=False):
-        print("Found directory {}".format(dirpath))
-        print("with subdirectories")
-        for dir in dirnames:
-            print(dir)
+    for dirpath, dirnames, files in os.walk(data_dir, topdown=False):
 
+        if len(files) == 0:
+            continue
 
-    
-    raise NotImplementedError
+        for file in files:
+
+            labels.append(int(os.path.split(dirpath)[-1]))
+
+            img = cv2.imread(os.path.join(dirpath,files[0]))
+            img = cv2.resize(img, (IMG_WIDTH, IMG_HEIGHT))
+            images.append(img)
+
+    return (images, labels)
 
 
 def get_model():

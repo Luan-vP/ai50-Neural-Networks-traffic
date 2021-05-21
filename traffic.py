@@ -96,7 +96,9 @@ def get_model():
         [
             layers.Conv2D(32, (3, 3), activation="relu", input_shape=(IMG_WIDTH, IMG_HEIGHT, 3)),
             layers.MaxPooling2D(pool_size=(2, 2)),
+            layers.Conv2D(32, (3, 3), activation="relu", input_shape=(IMG_WIDTH/2, IMG_HEIGHT/2, 3)),
             layers.Flatten(),
+            layers.Dense(128, activation="relu"),
             layers.Dense(128, activation="relu"),
             layers.Dropout(0.5),
             layers.Dense(NUM_CATEGORIES, activation="softmax")

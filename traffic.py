@@ -66,12 +66,17 @@ def load_data(data_dir):
 
     for dirpath, dirnames, files in os.walk(data_dir, topdown=False):
 
-        if len(files) == 0:
+        if len(files) ==0: # not a data directory
             continue
 
         for file in files:
-
+            
+            print(dirpath)
+            print(len(files))
+            print(files)
             labels.append(int(os.path.split(dirpath)[-1]))
+            
+            print(os.path.split(dirpath)[-1])
 
             img = cv2.imread(os.path.join(dirpath,files[0]))
             img = cv2.resize(img, (IMG_WIDTH, IMG_HEIGHT))
@@ -98,7 +103,6 @@ def get_model():
             layers.MaxPooling2D(pool_size=(2, 2)),
             layers.Conv2D(32, (3, 3), activation="relu", input_shape=(IMG_WIDTH/2, IMG_HEIGHT/2, 3)),
             layers.Flatten(),
-            layers.Dense(128, activation="relu"),
             layers.Dense(128, activation="relu"),
             layers.Dropout(0.5),
             layers.Dense(NUM_CATEGORIES, activation="softmax")

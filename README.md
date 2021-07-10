@@ -1,18 +1,10 @@
-Initial accuracy of around 0.1
-Likely due to the convolution layer
+The model had an initial accuracy of around 0.1, it was starting with a very small hidden layer of 5 neurons. 
+I increased this to 128 and immediately saw a big increase up to 0.7.
+Adding the a second layer increased the accuracy to about 0.9. 
+I had a great revelation when I realised that the Kernel is also trained!
 
-The Kernel is also trained!!!!
-
-Adding a second dense layer increased the accuracy immediately from 0.1ish to 0.9
-
-Accuracy seems very variable on each run (starting values?)
-
-Removing the dropout increased the accuracy almost immediately to 1.
-
-The same is true with just increasing Convolution size, or just increasing pooling size. 
-
-Second hidden layer also makes quite a big difference
-
-Duplicated the convulution and pooling layers, didn't see an increase in performance until used a smaller pooll size on the first one, under the intuition to let a larger picture through. Then it performed better than having a single conv/pooling pair
-
-It does better without the second pooling layer, intuition is more data to the neural network layers.
+Accuracy seemeds very variable on each run which I assumed was dependent on the starting position. 
+Removing the dropout layer after the hidden layers increased the accuracy immediately to 1, but I assume it is not as resilient to new data. 
+I also tried duplicating the convolution and pooling layers, although I found a drop in accuracy. 
+My intuition is that the pooling step reduces the amount of information entering the hidden layers, and so they are less able to learn from it. 
+This was supported by the fact that decreasing the pooling size also led to an increase in the accuracy. This actually prompted me to remove the second pooling layer. 

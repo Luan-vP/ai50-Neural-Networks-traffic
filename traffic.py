@@ -72,12 +72,14 @@ def load_data(data_dir):
         print(files)
 
         for file in files:
-            
-            labels.append(int(os.path.split(dirpath)[-1]))
 
-            img = cv2.imread(os.path.join(dirpath,file))
-            img = cv2.resize(img, (IMG_WIDTH, IMG_HEIGHT))
-            images.append(img)
+            if file != '.DS_Store':
+            
+                labels.append(int(os.path.split(dirpath)[-1]))
+
+                img = cv2.imread(os.path.join(dirpath,file))
+                img = cv2.resize(img, (IMG_WIDTH, IMG_HEIGHT))
+                images.append(img)
 
     return (images, labels)
 
